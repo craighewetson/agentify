@@ -1,0 +1,19 @@
+{
+  "project": "audit fixture (bench/fixtures/make_audit_fixture.py)",
+  "note": "arm a: the fixture without the audit-map skill; arm b: with it. Four rows are wrong (storage, export, notify, auth) and six are right, and `check --strict` and `sync` pass on both. The answer is graded on its WRONG: line only. Sessions deny subagents, so this measures the skill's checklist, not its fan-out.",
+  "tasks": [
+    {
+      "id": "audit-all",
+      "prompt": "Audit map.tsv against the code. Which rows are wrong about their area, test or cost? Check every row against its code. Reply with exactly one line starting 'WRONG:' that lists the ids of the rows you can show are wrong, or 'WRONG: none'. You may explain on other lines.",
+      "must": [
+        "WRONG:[^\\n]*\\bstorage\\b",
+        "WRONG:[^\\n]*\\bexport\\b",
+        "WRONG:[^\\n]*\\bnotify\\b",
+        "WRONG:[^\\n]*\\bauth\\b"
+      ],
+      "must_not": [
+        "WRONG:[^\\n]*\\b(parser|report|cli|rates|tags|search)\\b"
+      ]
+    }
+  ]
+}

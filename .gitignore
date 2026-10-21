@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/worktrees/
+
+# editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# new bench runs record absolute local paths; keep only curated results
+bench/results/*
+!bench/results/.gitkeep
+!bench/results/audit-map-*.json

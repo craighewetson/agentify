@@ -1,0 +1,10 @@
+{
+  "root_budget": 120,
+  "scoped_budget": 300,
+  "must_be_mapped": [
+    "src/*"
+  ],
+  "ignore_paths": [
+    "archetype/"
+  ]
+}

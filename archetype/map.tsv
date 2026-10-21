@@ -1,0 +1,5 @@
+# project map: one row per area. Columns are tab-separated. `tools/where.py <words>` searches it; `tests/check_map.py` keeps it true.
+# stack: {{stack}}
+# rules: TODO the standing rules in one line
+id	area	code	test	skill	doc	cost
+{{rows}}

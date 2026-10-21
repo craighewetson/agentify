@@ -1,0 +1,12 @@
+# project map: one row per area. Columns are tab-separated. `tools/where.py <words>` searches it; `tests/check_map.py` keeps it true.
+# stack: Python 3 standard library only; unittest; no dependencies; one command, bin/agentify
+# rules: edit the archetype master not a project copy; init never overwrites; every check rule has a break-it test; no network
+id	area	code	test	skill	doc	cost
+scan	read a project: stack, areas, tests, existing agent files	src/agentify/scan.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	none
+scaffold	init and upgrade: write the agent files without overwriting (an empty docs/style.md only if there is no style guide and a new root CLAUDE.md)	src/agentify/scaffold.py archetype	python3 -m unittest tests.test_agentify	working-agreements adopt-a-project	docs/adopting-a-project.md	none
+check	the lint: map true, budgets, no placeholders, every rule backed by an enforcer, a style-guide section or a stated judgment	archetype/tests/check_map.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	none
+lookup	where.py: search the map in about 100 tokens	archetype/tools/where.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	none
+sync	maintenance: worklist of dead, missing, undescribed and stale map rows; pre-commit hook	src/agentify/sync.py src/agentify/hook.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	none
+cli	the agentify command	bin/agentify src/agentify/cli.py	python3 -m unittest tests.test_agentify	working-agreements	CLAUDE.md	none
+measure	tokens loaded at the start of a session; saving against a git ref; budget gate	src/agentify/measure.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	none
+bench	A/B benchmark: fresh headless sessions answering fixed questions; real tokens and cost	src/agentify/bench.py tests/fake_claude.py bench bench/fixtures/make_audit_fixture.py	python3 -m unittest tests.test_agentify	working-agreements	docs/design.md	real money on the claude login (--dry-run first)
